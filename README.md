@@ -1,5 +1,5 @@
 lwoAuth, a simple test server for the ALPHA version of LU.
-This project is not related to in; and is not DLU.
+This project is not related to; and is not DLU.
 That said; anyone is welcome to work on this project.
 
 

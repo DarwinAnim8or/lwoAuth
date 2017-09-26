@@ -1,10 +1,5 @@
 #include "lwoServerPackets.h"
 #include "../RakNet/RakPeerInterface.h"
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-#include <sstream>
-#include <vector>
 
 bool lwoServerPackets::doHandshake(RakPeerInterface* rakServer, Packet* packet) {
 	bool bReturn = false;
@@ -13,23 +8,6 @@ bool lwoServerPackets::doHandshake(RakPeerInterface* rakServer, Packet* packet) 
 	unsigned long long header = inStream.Read(header); //Skips ahead 8 bytes, SetReadOffset doesn't work for some reason.
 	unsigned int iClientVersion;
 	inStream.Read(iClientVersion);
-
-	/*//print it
-	std::ostringstream buffer;
-
-	buffer << "Data (in bytes): ";
-
-	for (uint32_t i = 0; i < packet->length; ++i) {
-		if (i % 16 == 0) buffer << "\n\t\t";
-		else buffer << " ";
-		buffer << std::setw(2) << std::hex << std::setfill('0') << static_cast<uint32_t>(packet->data[i]);
-	}
-
-	buffer << "\n\n";
-	std::string bufferStr = buffer.str();
-	std::cout << bufferStr << std::endl;
-
-	std::cout << iClientVersion << std::endl;*/
 
 	unsigned int iServerVersion = 130529; //The version the client must have
 	if (iClientVersion == iServerVersion) {
