@@ -79,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\_Build\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -114,20 +115,22 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>./RakNet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>./Lib/RakNetLibStatic.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -267,6 +270,8 @@
     <ClInclude Include="RakNet\_FindFirst.h" />
     <ClInclude Include="Source\lwoPacketHandler.h" />
     <ClInclude Include="Source\lwoPacketIdentifiers.h" />
+    <ClInclude Include="Source\Packets\lwoAuthPackets.h" />
+    <ClInclude Include="Source\Packets\lwoPacketUtils.h" />
     <ClInclude Include="Source\Packets\lwoServerPackets.h" />
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +351,8 @@
     <ClCompile Include="RakNet\_FindFirst.cpp" />
     <ClCompile Include="Source\lwoAuth.cpp" />
     <ClCompile Include="Source\lwoPacketHandler.cpp" />
+    <ClCompile Include="Source\Packets\lwoAuthPackets.cpp" />
+    <ClCompile Include="Source\Packets\lwoPacketUtils.cpp" />
     <ClCompile Include="Source\Packets\lwoServerPackets.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,8 @@ int main(void) {
 	printf("lwoAuth, a simple test server for the ALPHA version of LU.\n");
 	printf("This project is licensed under the GPLv2, and is available at:\n");
 	printf("https://github.com/DarwinAnim8or/lwoAuth \n");
-	printf("While DLU members might work on this; it is not (related to) DLU.\n\n");
+	printf("While DLU members might work on this; it is not (related to) DLU.\n");
+	printf("Server version: 0.0.1\n\n");
 
 	rakServer->Startup(MAX_CLIENTS, 30, &SocketDescriptor(SERVER_PORT, 0), 1);
 	rakServer->SetIncomingPassword("3.25 ND1", 8);

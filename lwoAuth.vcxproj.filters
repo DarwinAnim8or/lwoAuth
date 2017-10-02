@@ -16,6 +16,12 @@
     <Filter Include="RakNet">
       <UniqueIdentifier>{b1cc753e-a34f-4520-848e-31f6063240b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Packets">
+      <UniqueIdentifier>{3819ca2c-0867-4d31-a151-eb8dfb3d97c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Packets">
+      <UniqueIdentifier>{4745c154-cbfc-4a34-9098-a9f796ae9894}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RakNet\Export.h">
@@ -376,7 +382,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Packets\lwoServerPackets.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Packets\lwoAuthPackets.h">
+      <Filter>Header Files\Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Packets\lwoPacketUtils.h">
+      <Filter>Header Files\Packets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -609,7 +621,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Packets\lwoServerPackets.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Packets\lwoAuthPackets.cpp">
+      <Filter>Source Files\Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Packets\lwoPacketUtils.cpp">
+      <Filter>Source Files\Packets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 #include "lwoServerPackets.h"
-#include "../RakNet/RakPeerInterface.h"
+#include "lwoPacketUtils.h"
 
 bool lwoServerPackets::doHandshake(RakPeerInterface* rakServer, Packet* packet) {
 	bool bReturn = false;
@@ -12,7 +12,7 @@ bool lwoServerPackets::doHandshake(RakPeerInterface* rakServer, Packet* packet) 
 	unsigned int iServerVersion = 130529; //The version the client must have
 	if (iClientVersion == iServerVersion) {
 		printf("Client version is equal to the server's version!\n");
-		sendHandshake(rakServer, packet, iServerVersion);
+		sendHandshake(rakServer, packet, iServerVersion, CONN_AUTH);
 	}
 	else if (iClientVersion > iServerVersion) {
 		printf("Received a newer client version: %i\n", iClientVersion);
@@ -27,12 +27,11 @@ bool lwoServerPackets::doHandshake(RakPeerInterface* rakServer, Packet* packet) 
 	return bReturn;
 } //doHandshake
 
-void lwoServerPackets::sendHandshake(RakPeerInterface* rakServer, Packet* packet, unsigned int iServerVersion) {
+void lwoServerPackets::sendHandshake(RakPeerInterface* rakServer, Packet* packet, unsigned int iServerVersion, unsigned int rConType) {
 	RakNet::BitStream bitStream;
-	createPacketHeader(ID_USER_PACKET_ENUM, CONN_SERVER, MSG_SERVER_VERSION_CONFIRM, &bitStream);
+	lwoPacketUtils::createPacketHeader(ID_USER_PACKET_ENUM, CONN_SERVER, MSG_SERVER_VERSION_CONFIRM, &bitStream);
 
 	unsigned int unknown = 0x93;
-	unsigned int rConType = CONN_AUTH;
 	unsigned int processID = 0x1410;
 	unsigned short localPort = 0xff;
 	std::string localIP = "127.0.0.1"; //hardcoded for now.
@@ -42,28 +41,19 @@ void lwoServerPackets::sendHandshake(RakPeerInterface* rakServer, Packet* packet
 	bitStream.Write(rConType);
 	bitStream.Write(processID);
 	bitStream.Write(localPort);
-	writeStringToPacket(localIP, localIP.size(), &bitStream);
+	lwoPacketUtils::writeStringToPacket(localIP, localIP.size(), &bitStream);
 	rakServer->Send(&bitStream, SYSTEM_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
 } //sendHandshake
 
-void lwoServerPackets::createPacketHeader(unsigned char uPacketID, unsigned short sConnectionType, unsigned int iInternalPacketID, RakNet::BitStream* bitStream) {
-	bitStream->Write((unsigned char)uPacketID);
-	bitStream->Write(sConnectionType);
-	bitStream->Write(iInternalPacketID);
-	bitStream->Write((char)0);
-}
+void lwoServerPackets::disconnectNotify(RakPeerInterface* rakServer, Packet* packet, int iErrorCode) {
+	RakNet::BitStream bitStream;
+	lwoPacketUtils::createPacketHeader(ID_USER_PACKET_ENUM, CONN_SERVER, MSG_SERVER_DISCONNECT_NOTIFY, &bitStream);
 
-void lwoServerPackets::writeStringToPacket(std::string sString, int maxSize, RakNet::BitStream* bitStream) {
-	int size = sString.size();
-	int emptySize = maxSize - size;
+	int unknown = 0;
 
-	if (size > maxSize) size = maxSize;
+	bitStream.Write(iErrorCode);
+	bitStream.Write(unknown);
 
-	for (int i = 0; i < size; i++) {
-		bitStream->Write((char)sString[i]);
-	}
-
-	for (int i = 0; i < emptySize; i++) {
-		bitStream->Write((char)0);
-	}
-} //writeStringToPacket
+	rakServer->Send(&bitStream, SYSTEM_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
+	rakServer->CloseConnection(packet->systemAddress, true, 0);
+} //disconnectNotify

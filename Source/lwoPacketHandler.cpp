@@ -1,5 +1,6 @@
 #include "lwoPacketHandler.h"
 #include "./Packets/lwoServerPackets.h"
+#include "./Packets/lwoAuthPackets.h"
 #include <stdio.h>
 
 void lwoPacketHandler::determinePacketHeader(RakPeerInterface* rakServer, Packet* packet) {
@@ -53,7 +54,7 @@ void lwoPacketHandler::handleAuthConnPackets(RakPeerInterface* rakServer, Packet
 	switch (packet->data[3]) {
 	case MSG_AUTH_LOGIN_REQUEST: {
 		printf("Received login request.\n");
-
+		lwoAuthPackets::handleLoginPacket(rakServer, packet);
 		break;
 	}
 	default:
