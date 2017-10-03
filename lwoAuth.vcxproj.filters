@@ -390,6 +390,12 @@
     <ClInclude Include="Source\Packets\lwoPacketUtils.h">
       <Filter>Header Files\Packets</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Database.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\sha256.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RakNet\_FindFirst.cpp">
@@ -628,6 +634,12 @@
     </ClCompile>
     <ClCompile Include="Source\Packets\lwoPacketUtils.cpp">
       <Filter>Source Files\Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\sha256.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

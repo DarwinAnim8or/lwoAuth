@@ -72,14 +72,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\_Build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)_Build\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\_Build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)_Build\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -92,12 +92,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>./RakNet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./RakNet;./MySQL/include;./MySQL/include/cppconn;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>./Lib/RakNetLibStatic.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>./Lib/RakNetLibStatic.lib;./MySQL/lib/opt/mysqlcppconn.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,14 +123,14 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>./RakNet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./RakNet;./MySQL/include;./MySQL/include/cppconn;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>./Lib/RakNetLibStatic.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>./Lib/RakNetLibStatic.lib;./MySQL/lib/opt/mysqlcppconn.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -268,11 +268,13 @@
     <ClInclude Include="RakNet\TransportInterface.h" />
     <ClInclude Include="RakNet\Types.h" />
     <ClInclude Include="RakNet\_FindFirst.h" />
+    <ClInclude Include="Source\Database.h" />
     <ClInclude Include="Source\lwoPacketHandler.h" />
     <ClInclude Include="Source\lwoPacketIdentifiers.h" />
     <ClInclude Include="Source\Packets\lwoAuthPackets.h" />
     <ClInclude Include="Source\Packets\lwoPacketUtils.h" />
     <ClInclude Include="Source\Packets\lwoServerPackets.h" />
+    <ClInclude Include="Source\sha256.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RakNet\AsynchronousFileIO.cpp" />
@@ -349,11 +351,13 @@
     <ClCompile Include="RakNet\TelnetTransport.cpp" />
     <ClCompile Include="RakNet\ThreadsafePacketLogger.cpp" />
     <ClCompile Include="RakNet\_FindFirst.cpp" />
+    <ClCompile Include="Source\Database.cpp" />
     <ClCompile Include="Source\lwoAuth.cpp" />
     <ClCompile Include="Source\lwoPacketHandler.cpp" />
     <ClCompile Include="Source\Packets\lwoAuthPackets.cpp" />
     <ClCompile Include="Source\Packets\lwoPacketUtils.cpp" />
     <ClCompile Include="Source\Packets\lwoServerPackets.cpp" />
+    <ClCompile Include="Source\sha256.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RakNet\Makefile.am" />

@@ -4,23 +4,17 @@
 #include <stdio.h>
 
 void lwoPacketHandler::determinePacketHeader(RakPeerInterface* rakServer, Packet* packet) {
-	printf("Trying to determine packet header...\n");
-
 	switch (packet->data[1]) { //First byte determines the connection type.
 	case CONN_SERVER:
-		printf("ConnectionType: CONN_SERVER\n");
 		handleServerConnPackets(rakServer, packet);
 		break;
 	case CONN_AUTH:
-		printf("ConnectionType: CONN_AUTH\n");
 		handleAuthConnPackets(rakServer, packet);
 		break;
 	case CONN_CHAT:
-		printf("ConnectionType: CONN_CHAT\n");
 		handleChatConnPackets(rakServer, packet);
 		break;
 	case CONN_WORLD:
-		printf("ConnectionType: CONN_WORLD\n");
 		handleWorldConnPackets(rakServer, packet);
 		break;
 	default:

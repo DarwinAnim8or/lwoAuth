@@ -4,7 +4,6 @@
 bool lwoServerPackets::doHandshake(RakPeerInterface* rakServer, Packet* packet) {
 	bool bReturn = false;
 	RakNet::BitStream inStream(packet->data, packet->length, false);
-	//inStream.SetReadOffset(8); //skip the header
 	unsigned long long header = inStream.Read(header); //Skips ahead 8 bytes, SetReadOffset doesn't work for some reason.
 	unsigned int iClientVersion;
 	inStream.Read(iClientVersion);
