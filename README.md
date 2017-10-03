@@ -14,4 +14,8 @@ Do note that this precompiled version only works in Release mode!
 
 Please note that this server is just for fun and should not be used to host a server for more than a few people!
 
+To set up the MySQL database, just import the "lwo.sql" file present in the "MySQL" folder.
+For now, the server expects the MySQL server to be on localhost, with root as username, lwo as database name, and a blank password.
+(Unless if you recompile it yourself) This will be changed soon when .ini configuration is added.
+
 For developers, a lot of the packet structure is different from live, so the currect docs from lcdr & humanoid, as helpful as they might be for live, they likely won't be of (that) much use to us as a lot of the netcode has changed since alpha.

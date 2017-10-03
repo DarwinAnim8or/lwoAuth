@@ -26,7 +26,7 @@ int main(void) {
 	std::cout << "This project is licensed under the GPLv2, and is available at:" << std::endl;
 	std::cout << "https://github.com/DarwinAnim8or/lwoAuth " << std::endl;
 	std::cout << "While DLU members might work on this; it is not (related to) DLU." << std::endl;
-	std::cout << "Server version: 0.0.1" << std::endl;
+	std::cout << "Server version: 0.1.0" << std::endl;
 	std::cout << "=================================================================" << std::endl << std::endl;
 
 	rakServer->Startup(MAX_CLIENTS, 30, &SocketDescriptor(SERVER_PORT, 0), 1);
