@@ -29,7 +29,12 @@ int main(void) {
 	std::cout << "Server version: 0.1.0" << std::endl;
 	std::cout << "=================================================================" << std::endl << std::endl;
 
-	rakServer->Startup(MAX_CLIENTS, 30, &SocketDescriptor(SERVER_PORT, 0), 1);
+	if (!rakServer->Startup(MAX_CLIENTS, 30, &SocketDescriptor(SERVER_PORT, 0), 1)) {
+		std::cout << "RakNet Server failed to start" << std::endl;
+		std::cin.get();
+		exit(0);
+	}
+	
 	rakServer->SetIncomingPassword("3.25 ND1", 8);
 
 	printf("Starting the server.\n");
